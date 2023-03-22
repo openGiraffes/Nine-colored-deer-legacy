@@ -2,7 +2,7 @@ import React from 'react';
 
 // for reference see https://reactjs.org/docs/error-boundaries.html
 
-export class ErrorBoundary extends React.Component {
+export class ErrorBoundary extends React.Component<any>{
   state: { hasError: boolean; error: null | string };
   constructor(props: any) {
     super(props);
@@ -31,6 +31,7 @@ export class ErrorBoundary extends React.Component {
         </div>
       );
     }
+    console.log(this.props)
     return this.props.children;
   }
 }

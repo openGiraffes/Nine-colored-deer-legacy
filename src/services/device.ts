@@ -1,6 +1,6 @@
 import { DeviceApp, DeviceInfo } from '../models';
 
-export function getDeviceInfo(): Promise<DeviceInfo> {
+export function getDeviceInfo(): Promise<DeviceInfo> { 
   return window.electron.kaiDevice.getInfo();
 }
 

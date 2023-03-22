@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { useDevice } from '../contexts/DeviceProvider';
 import { usePanels } from '../contexts/PanelsProvider';
 import { IconButton } from '../ui-components/IconButton';
@@ -11,8 +13,9 @@ import { SidebarItem } from './SidebarItem';
 export function Sidebar(): JSX.Element {
   const [searching, setSearching] = useState(false);
   const device = useDevice();
-  const history = useHistory();
+  const history = useNavigate();
   const loc = useLocation();
+  const { t, i18n } = useTranslation();
 
   const { setPanels } = usePanels();
 
@@ -31,7 +34,7 @@ export function Sidebar(): JSX.Element {
 
   function navigate(path: string) {
     setPanels([]);
-    history.push(path);
+    history(path);
   }
 
   return (
@@ -39,34 +42,34 @@ export function Sidebar(): JSX.Element {
       <div className={styles.titlebar} />
       <div className={styles.items}>
         <SidebarItem
-          primaryText="Home"
+          primaryText={t("HOME")}
           disabled={loc.pathname === '/'}
           onClick={() => navigate(`/`)}
         />
-        <Typography type="titleSmall">Apps</Typography>
+        <Typography type="titleSmall">{t("Apps")}</Typography>
         <SidebarItem
-          primaryText="Search"
+          primaryText={t("Search")}
           disabled={loc.pathname === '/search'}
           onClick={() => navigate(`/search`)}
         />
         <SidebarItem
-          primaryText="Categories"
+          primaryText={t("Categories")}
           disabled={loc.pathname === '/categories'}
           onClick={() => navigate(`/categories`)}
         />
-        <Typography type="titleSmall">System</Typography>
+        <Typography type="titleSmall">{t("System")}</Typography>
         <SidebarItem
-          primaryText="Settings"
+          primaryText={t("Settings")}
           disabled={loc.pathname === '/settings'}
           onClick={() => navigate(`/settings`)}
         />
-        <SidebarItem primaryText="About" />
+        <SidebarItem primaryText={t("About")} />
         <div className={styles.spacer} />
-        <Typography type="titleSmall">Device</Typography>
+        <Typography type="titleSmall">{t("Device")}</Typography>
         {device.info ? (
           <SidebarItem
             primaryText={device.info.name}
-            secondaryText="Connected"
+            secondaryText={t("Connected")}
             disabled={loc.pathname === '/device'}
             onClick={() => navigate(`/device`)}
           >
@@ -78,7 +81,7 @@ export function Sidebar(): JSX.Element {
             />
           </SidebarItem>
         ) : (
-          <SidebarItem primaryText="No Device">
+          <SidebarItem primaryText={t("NoDevice")}>
             <IconButton
               className={styles.btnRefresh}
               icon="refresh"

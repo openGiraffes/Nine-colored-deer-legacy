@@ -1,14 +1,16 @@
 import { kebabCase } from 'lodash';
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import styles from './App.module.css';
 import { ErrorBoundary } from './components/ErrorBoundery';
 import { Sidebar } from './components/Sidebar';
 import { DeviceProvider } from './contexts/DeviceProvider';
 import { PanelsProvider } from './contexts/PanelsProvider';
 import { SettingsProvider, useSettings } from './contexts/SettingsProvider';
+import './locale/index';
 import { TextSize } from './models';
 import { AppSettings } from './routes/AppSettings';
 import { Categories } from './routes/Categories';
@@ -45,7 +47,8 @@ export function AppWrapper(): JSX.Element {
 }
 
 export function App(): JSX.Element {
-  const { settings } = useSettings();
+  const { settings } = useSettings(); 
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     // Theme
@@ -62,6 +65,8 @@ export function App(): JSX.Element {
       '--button-text-color',
       settings.accentTextColor === 'light' ? 'rgba(255,255,255,.95)' : 'rgba(0,0,0,.95)'
     );
+    
+    i18n.changeLanguage(settings.language);
 
     const fontSize = {
       [TextSize.Smallest]: 8,
@@ -80,25 +85,23 @@ export function App(): JSX.Element {
     <div className={styles.root}>
       <Sidebar />
       <ErrorBoundary>
-        <Switch>
-          <Route exact path="/">
-            <Home />
+        <Routes>
+          <Route  path="/" element={<Home/>} >
+            
           </Route>
-          <Route exact path="/device">
-            <ErrorBoundary>
-              <Device />
-            </ErrorBoundary>
+          <Route  path="/device" element={<Device/>} >
+       
           </Route>
-          <Route exact path="/search">
-            <Search />
+          <Route  path="/search" element={<Search/>} >
+            
           </Route>
-          <Route exact path="/categories">
-            <Categories />
+          <Route  path="/categories"  element={<Categories/>} >
+         
           </Route>
-          <Route exact path="/settings">
-            <AppSettings />
+          <Route  path="/settings" element={<AppSettings/>} >
+            
           </Route>
-        </Switch>
+        </Routes>
       </ErrorBoundary>
     </div>
   );

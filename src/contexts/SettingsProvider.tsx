@@ -1,12 +1,14 @@
 import React, { createContext, useContext, useState } from 'react';
-import { ComponentBaseProps, Settings, TextSize, Theme } from '../models';
+import { ComponentBaseProps, Language, Settings, TextSize, Theme } from '../models';
 import { getStorageItem, setStorageItem, StorageKey } from '../utils/storage';
+
 
 const defaultSettings: Settings = {
   theme: Theme.Light,
   textSize: TextSize.Medium,
-  accentColor: 'inherit',
+  accentColor: '#000000',
   accentTextColor: 'light',
+  language:Language.Chinese
 };
 
 type SettingsContextValue = {
@@ -35,8 +37,8 @@ export function SettingsProvider(props: SettingsProviderProps) {
     ...getStorageItem<Settings>(StorageKey.Settings),
   });
 
-  function setSettings(val: Partial<Settings>): void {
-    setStorageItem<Settings>(StorageKey.Settings, { ...settings, ...val });
+  function setSettings(val: Partial<Settings>): void { 
+    setStorageItem<Settings>(StorageKey.Settings, { ...settings, ...val }); 
     setSettingsInternal({ ...settings, ...val });
   }
 

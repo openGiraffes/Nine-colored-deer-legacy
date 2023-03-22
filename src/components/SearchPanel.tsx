@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { usePanels } from '../contexts/PanelsProvider';
 import { StoreApp } from '../models';
 import { searchApps } from '../services/store';
@@ -18,7 +19,8 @@ export function SearchPanel({ panelId }: Props): JSX.Element {
   const [query, setQuery] = useState<string>('');
   const [results, setResults] = useState<StoreApp[]>();
   const { addPanel } = usePanels();
-
+  const { t, i18n } = useTranslation();
+  
   async function search() {
     const res = await searchApps(query);
 
@@ -27,7 +29,7 @@ export function SearchPanel({ panelId }: Props): JSX.Element {
 
   return (
     <Panel panelId={panelId}>
-      <PanelHeader title="Search"></PanelHeader>
+      <PanelHeader title={t("Search")}></PanelHeader>
       <PanelContent>
         <form
           className={styles.form}

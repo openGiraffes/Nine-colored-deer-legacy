@@ -15,7 +15,13 @@ export enum TextSize {
   Largest = 'largest',
 }
 
+export enum Language {
+  Chinese = 'zh-CN',
+  English = 'en-US',
+}
+
 export type Settings = {
+  language:Language;
   theme: Theme;
   textSize: TextSize;
   accentColor: string;

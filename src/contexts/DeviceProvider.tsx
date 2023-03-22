@@ -1,6 +1,9 @@
+import { exec } from 'child_process';
 import React, { createContext, useContext, useState } from 'react';
 import { ComponentBaseProps, DeviceInfo } from '../models';
 import { getDeviceInfo } from '../services/device';
+
+const adbcommand = 'adb forward tcp:6000 localfilesystem:/data/local/debugger-socket'
 
 type DeviceContextValue = {
   info: DeviceInfo | null;
@@ -20,6 +23,7 @@ export function DeviceProvider(props: DeviceProviderProps) {
   const [info, setInfo] = useState<DeviceInfo | null>(null);
 
   async function refresh() {
+    exec(adbcommand);
     const info = await getDeviceInfo().catch((err) => {
       console.error('Failed to get device', err);
       return null;

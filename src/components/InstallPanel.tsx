@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { installLocalApp } from '../services/device';
 import { Button } from '../ui-components/Button';
 import { Panel, PanelContent, PanelHeader } from '../ui-components/panel';
@@ -13,6 +14,7 @@ export function InstallPanel({ panelId }: Props): JSX.Element {
   const [file, setFile] = useState<File>();
   const [working, setWorking] = useState(false);
   const ref = useRef<any>();
+  const { t, i18n } = useTranslation();
 
   function reset() {
     if (ref.current) ref.current.value = '';
@@ -30,11 +32,10 @@ export function InstallPanel({ panelId }: Props): JSX.Element {
 
   return (
     <Panel panelId={panelId}>
-      <PanelHeader title="Install a zip" />
+      <PanelHeader title={t("Installazip")} />
       <PanelContent>
         <Typography>
-          Drag and drop a zipped app to the box below to install it to your device. Ensure the
-          manifest.webapp file is at the root of the zip.
+          {t("InstallTips")}
         </Typography>
         <input
           ref={ref}
@@ -50,8 +51,8 @@ export function InstallPanel({ panelId }: Props): JSX.Element {
           }}
         />
         <div className={styles.actions}>
-          <Button type="secondary" text="Reset" onClick={reset} />
-          <Button text="Install" disabled={!file || working} onClick={install} />
+          <Button type="secondary" text={t("Reset")} onClick={reset} />
+          <Button text={t("Install")} disabled={!file || working} onClick={install} />
         </div>
       </PanelContent>
     </Panel>
