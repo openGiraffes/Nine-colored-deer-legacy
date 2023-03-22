@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, session, shell } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu, session, shell } from 'electron';
 import { download } from 'electron-dl';
 import { Device } from './main/device';
 
@@ -7,6 +7,7 @@ import { Device } from './main/device';
 // whether you're running in development or production).
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: any;
+
 
 ipcMain.handle('device-info', async (_) => {
   console.log('device-info');
@@ -143,11 +144,12 @@ const createWindow = (): void => {
     });
   });
 
+  Menu.setApplicationMenu (null);
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     height: 800,
     width: app.isPackaged ? 900 : 1400,
-    titleBarStyle: 'hidden',
+    //titleBarStyle: 'hidden',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,

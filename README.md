@@ -1,4 +1,4 @@
-# Kaiware
+# openGiraffes-PC-Client
 
 ![Screenshot](/promo/screenshot1.png?raw=true)
 
@@ -16,3 +16,5 @@ Make sure you have the following dependencies installed:
 3. Connect your phone to your computer and make sure it shows up with `adb devices`
 4. Forward if you haven't done so already. `adb forward tcp:6000 localfilesystem:/data/local/debugger-socket`
 5. `npm start`
+
+tips：use `npm run make` to make a package

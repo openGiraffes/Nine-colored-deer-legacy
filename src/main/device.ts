@@ -119,7 +119,7 @@ export class Device {
   }
 
   public async installPackagedAppFromUrl(url: string, appId: string): Promise<DeviceApp> {
-    const basePath = await mkdtemp(path.join(os.tmpdir(), 'kaiware-'));
+    const basePath = await mkdtemp(path.join(os.tmpdir(), 'openGiraffes-PC-Client-'));
     console.log('BASE PATH', basePath);
 
     const fileId = new Date().valueOf();

@@ -29,7 +29,7 @@ export function SearchPanel({ panelId }: Props): JSX.Element {
 
   return (
     <Panel panelId={panelId}>
-      <PanelHeader title={t("Search")}></PanelHeader>
+      <PanelHeader title={t("Search").toString()}></PanelHeader>
       <PanelContent>
         <form
           className={styles.form}

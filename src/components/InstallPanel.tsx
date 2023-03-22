@@ -32,7 +32,7 @@ export function InstallPanel({ panelId }: Props): JSX.Element {
 
   return (
     <Panel panelId={panelId}>
-      <PanelHeader title={t("Installazip")} />
+      <PanelHeader title={t("Installazip").toString()} />
       <PanelContent>
         <Typography>
           {t("InstallTips")}

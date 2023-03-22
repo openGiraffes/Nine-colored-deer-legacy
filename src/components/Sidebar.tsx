@@ -69,7 +69,7 @@ export function Sidebar(): JSX.Element {
         {device.info ? (
           <SidebarItem
             primaryText={device.info.name}
-            secondaryText={t("Connected")}
+            secondaryText={t("Connected").toString()}
             disabled={loc.pathname === '/device'}
             onClick={() => navigate(`/device`)}
           >

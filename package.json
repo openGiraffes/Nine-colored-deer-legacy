@@ -1,13 +1,13 @@
 {
-  "name": "kaiware",
-  "productName": "Kaiware",
+  "name": "openGiraffes-PC-Client",
+  "productName": "openGiraffes-PC-Client",
   "version": "0.1.0",
   "description": "My Electron application description",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make",
+    "make": "electron-forge make --platform=win32 --arch=ia32",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
     "prettier:check": "prettier -c src *.md *.js *.json",
@@ -30,7 +30,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "Kaiware"
+            "name": "openGiraffes-PC-Client"
           }
         },
         {

@@ -20,7 +20,7 @@ export function SettingsPanel({ panelId }: Props): JSX.Element {
   const { t, i18n } = useTranslation();
   return (
     <Panel panelId={panelId}>
-      <PanelHeader title={t('Settings')} />
+      <PanelHeader title={t('Settings').toString()} />
       <PanelContent>
         
       <section className={styles.section}>
@@ -87,7 +87,7 @@ export function SettingsPanel({ panelId }: Props): JSX.Element {
           </SettingsRow>
           <SettingsRow
             title={t("AccentColorTitle")} 
-            description={t("AccentColorDescription")}
+            description={t("AccentColorDescription").toString()}
           >
             <Select
               value={settings.accentTextColor}
