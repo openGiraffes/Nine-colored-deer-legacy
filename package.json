@@ -2,7 +2,7 @@
   "name": "openGiraffes-PC-Client",
   "productName": "openGiraffes-PC-Client",
   "version": "0.1.0",
-  "description": "My Electron application description",
+  "description": "openGiraffes pc client",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -17,8 +17,7 @@
   },
   "keywords": [],
   "author": {
-    "name": "Garrett Downs",
-    "email": "garredow@outlook.com"
+    "name": "openGiraffes"
   },
   "license": "MIT",
   "config": {
@@ -83,7 +82,8 @@
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
-    "electron": "^23.1.4",
+    "electron": "^16.2.5",
+    "electron-winstaller": "^5.1.0",
     "eslint": "^8.36.0",
     "eslint-plugin-import": "^2.27.5",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
@@ -95,6 +95,10 @@
   },
   "dependencies": {
     "@cliqz-oss/firefox-client": "0.3.1",
+    "@electron-forge/cli": "^6.0.5",
+    "@electron-forge/maker-deb": "^6.0.5",
+    "@electron-forge/maker-squirrel": "^6.0.5",
+    "@electron-forge/maker-zip": "^6.0.5",
     "child_process": "^1.0.2",
     "date-fns": "^2.29.3",
     "electron-dl": "^3.5.0",
@@ -102,6 +106,8 @@
     "electron-squirrel-startup": "^1.0.0",
     "extract-zip": "^2.0.1",
     "follow-redirects": "^1.15.2",
+    "fs-extra": "^11.1.1",
+    "i18next": "^22.4.13",
     "lodash": "^4.17.21",
     "lunr": "^2.3.9",
     "react": "^18.2.0",
