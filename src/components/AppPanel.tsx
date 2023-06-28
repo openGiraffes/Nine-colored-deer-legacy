@@ -7,8 +7,8 @@ import { installApp } from '../services/device';
 import { fetchAppVersion, getAppBySlug } from '../services/store';
 import { BrowserLink } from '../ui-components/BrowserLink';
 import { Button } from '../ui-components/Button';
-import { Panel, PanelContent, PanelHeader } from '../ui-components/panel';
 import { Typography } from '../ui-components/Typography';
+import { Panel, PanelContent, PanelHeader } from '../ui-components/panel';
 import styles from './AppPanel.module.css';
 import { ImageScroller } from './ImageScroller';
 
