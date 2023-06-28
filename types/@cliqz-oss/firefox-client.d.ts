@@ -31,7 +31,7 @@ declare class FirefoxClient {
   rawListeners(type: any): any;
   removeAllListeners(type: any, ...args: any[]): any;
   removeListener(type: any, listener: any): any;
-  request(type: any, message: any, transform: any, callback: any): void;
+  request(type: any, message: any, transform: any, callback: any,actor:any): void;
   selectedTab(cb: any): void;
   setMaxListeners(n: any): any;
 }

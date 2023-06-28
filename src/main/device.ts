@@ -1,4 +1,5 @@
 import FirefoxClient from '@cliqz-oss/firefox-client';
+import { exec } from 'child_process';
 import extract from 'extract-zip';
 import { https } from 'follow-redirects';
 import fs from 'fs';
@@ -18,7 +19,39 @@ export class Device {
     this._client = new FirefoxClient();
   }
 
+  //截屏手机
+  public async getPicFromPhoneScreen()
+  {  
+    var actor=JSON.parse(JSON.stringify(this._deviceActor))["actor"]
+    var ccc = await this.request("screenshotToDataURL",{"to":actor}, actor);
+    var value=JSON.parse( JSON.stringify(ccc))["value"];
+    var length = parseInt(value["length"]);
+    actor = value["actor"];
+    var ccc = await this.request("substring",{"start":0,"end":length},actor);
+    var image = JSON.parse( JSON.stringify(ccc))["substring"];
+    console.log("image"+image);
+    return image;
+  }
+  
+  public runadbcommand()
+  {
+    const cwd = './adb'
+  const adbcommand = 'adb forward tcp:6000 localfilesystem:/data/local/debugger-socket'
+
+    try{ 
+    exec(adbcommand, {
+      cwd, encoding: 'utf8',
+    }, (error, data) => {
+      console.log("data:"+data);
+    })
+    }catch(err)
+    {
+      console.log("error:"+err);
+    }
+  } 
+
   public connect(port = 6000) {
+    this.runadbcommand();
     return new Promise((resolve, reject) => {
       this._client.connect(port, 'localhost', async (err: any) => {
         if (err) {
@@ -28,7 +61,7 @@ export class Device {
 
         this._deviceActor = await this.getDeviceActor();
         this._appsActor = await this.getWebappsActor();
-
+         
         resolve(null);
       });
       this._client.on('error', (err: any) => {
@@ -62,6 +95,20 @@ export class Device {
     });
   }
 
+  private request(type:String,message:any,to:String): Promise<any> {
+    return new Promise((resolve, reject) => { 
+      this._client.request(type,message,"",(err:any,result:any)=>{
+        if(err)
+        {
+          reject(err);
+        }
+        else{ 
+          resolve(result);
+        }
+      },to)
+    });
+  }
+  
   public async getApp(appId: string): Promise<DeviceApp | undefined> {
     const apps = await this.getInstalledApps();
     const app = apps.find((a) => a.id === appId);
@@ -119,7 +166,7 @@ export class Device {
   }
 
   public async installPackagedAppFromUrl(url: string, appId: string): Promise<DeviceApp> {
-    const basePath = await mkdtemp(path.join(os.tmpdir(), 'openGiraffes-PC-Client-'));
+    const basePath = await mkdtemp(path.join(os.tmpdir(), 'Nine-colored-deer-'));
     console.log('BASE PATH', basePath);
 
     const fileId = new Date().valueOf();
@@ -165,7 +212,8 @@ export class Device {
 
     const device = await getDeviceInfo();
     device.name = device.useragent?.match(/Mobile; (.*);/)?.[1] || 'Generic Device';
-
+    device.screenshot = await this.getPicFromPhoneScreen();
+    //console.log("  device.screenshot "+  device.screenshot);
     return device;
   }
 }

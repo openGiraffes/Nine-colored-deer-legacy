@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, Menu, session, shell } from 'electron';
+import { BrowserWindow, Menu, app, globalShortcut, ipcMain, session, shell } from 'electron';
 import { download } from 'electron-dl';
 import { Device } from './main/device';
 
@@ -137,8 +137,8 @@ const createWindow = (): void => {
         'access-control-allow-origin': '*',
         'Content-Security-Policy': [
           app.isPackaged
-            ? "default-src 'self' 'unsafe-inline' data:; script-src 'self' data:; img-src 'self' https://banana-hackers.gitlab.io; connect-src 'self' https://banana-hackers.gitlab.io https://gitlab.com"
-            : "default-src 'self' 'unsafe-inline' data: https://banana-hackers.gitlab.io https://gitlab.com; script-src 'self' 'unsafe-eval' 'unsafe-inline' data:",
+            ? "default-src 'self' 'unsafe-inline' data:; script-src 'self' data:; img-src 'self' https://banana-hackers.gitlab.io data:; connect-src 'self' https://banana-hackers.gitlab.io https://gitlab.com; "
+            : "default-src 'self' 'unsafe-inline' data: https://banana-hackers.gitlab.io https://gitlab.com; script-src 'self' 'unsafe-eval' 'unsafe-inline' "
         ],
       },
     });
@@ -154,8 +154,10 @@ const createWindow = (): void => {
       nodeIntegration: false,
       contextIsolation: true,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+      webSecurity:false
       // preload: path.join(__dirname, 'preload.js'),
     },
+
   });
 
   // and load the index.html of the app.
@@ -165,7 +167,10 @@ const createWindow = (): void => {
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
   }
-
+  globalShortcut.register('CommandOrControl+J', () => {
+    mainWindow.webContents.openDevTools();
+  });
+  
   // const menu = Menu.buildFromTemplate(menuTemplate);
   // Menu.setApplicationMenu(menu);
 };

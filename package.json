@@ -1,6 +1,6 @@
 {
-  "name": "openGiraffes-PC-Client",
-  "productName": "openGiraffes-PC-Client",
+  "name": "Nine-colored-deer",
+  "productName": "Nine-colored-deer",
   "version": "0.1.0",
   "description": "openGiraffes pc client",
   "main": ".webpack/main",
@@ -29,7 +29,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "openGiraffes-PC-Client"
+            "name": "Nine-colored-deer"
           }
         },
         {
@@ -106,6 +106,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "extract-zip": "^2.0.1",
     "follow-redirects": "^1.15.2",
+    "fs": "^0.0.1-security",
     "fs-extra": "^11.1.1",
     "i18next": "^22.4.13",
     "lodash": "^4.17.21",

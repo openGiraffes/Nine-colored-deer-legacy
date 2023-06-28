@@ -26,4 +26,5 @@ export interface DeviceInfo {
   height: number;
   brandName: string;
   deviceName: string;
+  screenshot: string;
 }

@@ -5,9 +5,9 @@ import { usePanels } from '../contexts/PanelsProvider';
 import { DeviceApp } from '../models';
 import { getInstalledApps, getRunningApps } from '../services/device';
 import { IconButton } from '../ui-components/IconButton';
-import { Panel, PanelContent, PanelFooter, PanelHeader } from '../ui-components/panel';
 import { IconSize } from '../ui-components/SvgIcon';
 import { Typography } from '../ui-components/Typography';
+import { Panel, PanelContent, PanelFooter, PanelHeader } from '../ui-components/panel';
 import styles from './DevicePanel.module.css';
 import { InstalledAppPanel } from './InstalledAppPanel';
 
@@ -56,7 +56,7 @@ export function DevicePanel({ panelId }: Props): JSX.Element {
       <PanelHeader title="Device Info" />
       <PanelContent>
         <div className={styles.container}>
-          <img className={styles.device} src="/static/images/generic_device.png" alt="" />
+          <img className={styles.device} src={device.info?.screenshot} alt="" />
           <div className={styles.info}>
             <Typography type="subtitle" padding="horizontal">
               {device.info?.name}

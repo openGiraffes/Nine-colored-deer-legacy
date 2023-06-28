@@ -1,4 +1,4 @@
-# openGiraffes-PC-Client
+# Nine-colored-deer
 
 ![Screenshot](/promo/screenshot1.png?raw=true)
 

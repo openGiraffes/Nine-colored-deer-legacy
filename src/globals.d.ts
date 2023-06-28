@@ -1,4 +1,4 @@
-import { DeviceInfo, DeviceApp } from './models';
+import { DeviceApp, DeviceInfo } from './models';
 
 declare global {
   interface Window {
@@ -22,4 +22,5 @@ declare global {
   }
 }
 
-export {};
+export { };
+
