@@ -1,8 +1,6 @@
-# Nine-colored-deer
+# Nine-colored-deer (Deprecated)
 
-![Screenshot](/promo/screenshot1.png?raw=true)
-
-Note: Very much a work in progress
+**This app is no longer supported, please wait for the new Nine Colored Deer in the future！**
 
 ## Running
 
